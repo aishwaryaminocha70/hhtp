@@ -2,7 +2,6 @@
 from socket import *
 # In order to terminate the program
 import sys
-serverPort=80
 
 def webServer(port=13331):
   serverSocket = socket(AF_INET, SOCK_STREAM)
@@ -12,12 +11,15 @@ def webServer(port=13331):
   serverSocket.bind(('',serverPort))
   serverSocket.listen(1)
   #Fill in end
+  
 
- while True:
+while True:
     print('Ready to serve..')
     #Establish the connection
     
     connectionSocket, addr = serverSocket.accept()
+    print('source address:' + str(addr))
+
     try:
       
       try:
@@ -37,9 +39,9 @@ def webServer(port=13331):
         for i in range(0, len(outputdata)):
             connectionSocket.send(outputdata[i].encode())
 
-        connectionSocket.send("\r\n".encode()))                               
+        connectionSocket.send("\r\n".encode())                              
         connectionSocket.close()
-        except IOError:
+      except IOError:
         
         # Send response message for file not found (404)
       
@@ -51,8 +53,8 @@ def webServer(port=13331):
     except (ConnectionResetError, BrokenPipeError):
       pass
 
-  serverSocket.close()
-  sys.exit()  # Terminate the program after sending the corresponding data
+serverSocket.close()
+sys.exit()  # Terminate the program after sending the corresponding data
 
 if __name__ == "__main__":
   webServer(13331)
