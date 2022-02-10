@@ -2,19 +2,21 @@
 from socket import *
 # In order to terminate the program
 import sys
-
+serverPort=80
 
 def webServer(port=13331):
   serverSocket = socket(AF_INET, SOCK_STREAM)
   #Prepare a server socket
   serverSocket.bind(('127.0.0.1', 13331))
   #Fill in start
+  serverSocket.bind(('',serverPort))
   serverSocket.listen(1)
   #Fill in end
 
  while True:
+    print('Ready to serve..')
     #Establish the connection
-    print 'Ready to serve..'
+    
     connectionSocket, addr = serverSocket.accept()
     try:
       
@@ -23,7 +25,9 @@ def webServer(port=13331):
         filename = message.split()[1]
         f = open(filename[1:])
         outputdata = f.read()     
-        
+        print (outputdata)
+
+
         #Send one HTTP header line into socket.
         #Fill in start
         connectionSocket.send(bytes('HTTP/1.1 200 OK\r\n\r\n','UTF-8'))
