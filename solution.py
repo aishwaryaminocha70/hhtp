@@ -17,8 +17,7 @@ def webServer(port=13331):
     #Establish the connection
     
     connectionSocket, addr = serverSocket.accept()
-    print('source address:' + str(addr))
-
+  
     try:
       
       try:
