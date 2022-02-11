@@ -31,12 +31,12 @@ def webServer(port=13331):
 
         #Send one HTTP header line into socket.
         #Fill in start
-        connectionSocket.send(('HTTP/1.1 200 OK\r\n\r\n').encode())
+        connectionSocket.send('HTTP/1.1 200 OK\r\n\r\n'.encode())
         #Fill in end
 
         #Send the content of the requested file to the client
         for i in range(0, len(outputdata)):
-            connectionSocket.send((outputdata[i]).encode())
+            connectionSocket.send(outputdata[i].encode())
 
         connectionSocket.send("\r\n".encode())                              
         connectionSocket.close()
@@ -44,15 +44,15 @@ def webServer(port=13331):
         
         # Send response message for file not found (404)
       
-        connectionSocket.send(('\nHTTP/1.1 404 Not Found\n\n'),'UFT-8'.encode())
+        connectionSocket.send('\nHTTP/1.1 404 Not Found\n\n'.encode())
         
         connectionSocket.close()
         #Fill in end
 
     except (ConnectionResetError, BrokenPipeError):
       pass
-    serverSocket.close()
-    sys.exit()  # Terminate the program after sending the corresponding data
+   serverSocket.close()
+   sys.exit()  # Terminate the program after sending the corresponding data
 
 if __name__ == "__main__":
   webServer(13331)
