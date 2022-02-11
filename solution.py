@@ -11,11 +11,9 @@ def webServer(port=13331):
   serverSocket.listen(1)
   #Fill in end
   
-
   while True:
     #print('Ready to serve..')
     #Establish the connection
-    
     connectionSocket, addr = serverSocket.accept()
   
     try:
@@ -25,12 +23,10 @@ def webServer(port=13331):
         filename = message.split()[1]
         f = open(filename[1:])
         outputdata = f.read()     
-        
-
 
         #Send one HTTP header line into socket.
         #Fill in start
-        connectionSocket.send(bytes('HTTP/1.1 200 OK\r\n\r\n','UTF-8'))
+        connectionSocket.send(('HTTP/1.1 200 OK\r\n\r\n','UTF-8').encode())
         #Fill in end
 
         #Send the content of the requested file to the client
@@ -43,7 +39,7 @@ def webServer(port=13331):
         
         # Send response message for file not found (404)
       
-        connectionSocket.send(bytes('\nHTTP/1.1 404 Not Found\n\n'). 'UFT-8)
+        connectionSocket.send(bytes('\nHTTP/1.1 404 Not Found\n\n'),'UFT-8'.encode())
         
         connectionSocket.close()
         #Fill in end
@@ -51,8 +47,8 @@ def webServer(port=13331):
     except (ConnectionResetError, BrokenPipeError):
       pass
                               
-    serverSocket.close()
-    sys.exit()  # Terminate the program after sending the corresponding data
+   serverSocket.close()
+   sys.exit()  # Terminate the program after sending the corresponding data
 
 if __name__ == "__main__":
   webServer(13331)
