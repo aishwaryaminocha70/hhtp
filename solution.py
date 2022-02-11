@@ -23,9 +23,9 @@ def webServer(port=13331):
       try:
         message = connectionSocket.recv(1024)
         filename = message.split()[1]
-        f = open(filename[1:])
-        outputdata = f.read()     
-        print (outputdata)
+        f = open(filename[1:].decode())
+        outputdata = f.read(.decode())     
+        
 
 
         #Send one HTTP header line into socket.
@@ -43,7 +43,7 @@ def webServer(port=13331):
         
         # Send response message for file not found (404)
       
-        connectionSocket.send('file not found 404')
+        connectionSocket.send(\nHTTP/1.1 404 Not Found\n\n')
         
         connectionSocket.close()
         #Fill in end
