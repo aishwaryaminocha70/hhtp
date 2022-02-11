@@ -13,10 +13,10 @@ def webServer(port=13331):
   
 
   while True:
-    print('Ready to serve..')
+    #print('Ready to serve..')
     #Establish the connection
     
-    connectionSocket, addr = serverSocket.accept()
+    connectionSocket, addr = serverSocket.accept(.encode())
   
     try:
       
