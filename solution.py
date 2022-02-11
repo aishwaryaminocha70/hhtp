@@ -43,7 +43,7 @@ def webServer(port=13331):
         
         # Send response message for file not found (404)
       
-        connectionSocket.send(\nHTTP/1.1 404 Not Found\n\n')
+        connectionSocket.send(bytes(\nHTTP/1.1 404 Not Found\n\n'). 'UFT-8)
         
         connectionSocket.close()
         #Fill in end
