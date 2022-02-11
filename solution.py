@@ -16,15 +16,15 @@ def webServer(port=13331):
     #print('Ready to serve..')
     #Establish the connection
     
-    connectionSocket, addr = serverSocket.accept(.encode())
+    connectionSocket, addr = serverSocket.accept()
   
     try:
       
       try:
         message = connectionSocket.recv(1024)
         filename = message.split()[1]
-        f = open(filename[1:].decode())
-        outputdata = f.read(.decode())     
+        f = open(filename[1:])
+        outputdata = f.read()     
         
 
 
@@ -43,7 +43,7 @@ def webServer(port=13331):
         
         # Send response message for file not found (404)
       
-        connectionSocket.send(bytes(\nHTTP/1.1 404 Not Found\n\n'). 'UFT-8)
+        connectionSocket.send(bytes('\nHTTP/1.1 404 Not Found\n\n'). 'UFT-8)
         
         connectionSocket.close()
         #Fill in end
